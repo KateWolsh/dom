@@ -7,6 +7,25 @@ body {
     margin: 0;
 }
 
+
+.header {
+    position: relative;
+    text-align: center;
+    margin-left: 40%;
+    margin-bottom: 5px;
+  }
+
+  .score {
+    width: 120px;
+    height: 50px;
+    background-color: #ccc;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+  }
+
 .game-board {
     display: grid;
     grid-template-columns: repeat(4, 120px);
@@ -24,3 +43,4 @@ body {
     align-items: center;
     font-size: 24px;
 }
+
