@@ -97,8 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
 // const unusedVariable = "variable";
 
 // for demonstration purpose only
-// export default function demo(value) {
-//   return `Demo: ${value}`;
-// }
+export default function demo(value) {
+  return `Demo: ${value}`;
+}
 
-// console.log("app.js included");
+console.log("app.js included");
