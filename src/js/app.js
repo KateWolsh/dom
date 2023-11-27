@@ -1,5 +1,5 @@
 // TODO: write code here
-document.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("DOMContentLoaded", function () {
   class GameLogic {
     constructor(game) {
       this.game = game;
