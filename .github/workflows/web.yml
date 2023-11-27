@@ -35,8 +35,6 @@ jobs:
       - name: Run linters
         run: npm run lint
 
-        run: npm run coverage
-
       - name: Build
         run: npm run build
 
