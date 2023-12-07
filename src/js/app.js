@@ -30,9 +30,6 @@ window.addEventListener("DOMContentLoaded", function () {
       this.score += 1;
       this.updateScoreDisplay();
       this.resetMissedAttempts();
-
-      this.game.monster.parentNode.removeChild(this.game.monster);
-      this.setMonsterRandomPosition();
     }
 
     handleGameBoardClick() {
@@ -81,19 +78,12 @@ window.addEventListener("DOMContentLoaded", function () {
       this.monster = document.getElementsByClassName("monster")[0];
 
       this.logic = new GameLogic(this);
-      this.init();
-    }
-
-    init() {
-      this.logic.setMonsterRandomPosition();
-      setInterval(() => this.logic.setMonsterRandomPosition(), 1000);
     }
   }
 
   const gameInstance = new Game();
 });
 
-// comment this to pass build
 // const unusedVariable = "variable";
 
 // for demonstration purpose only
