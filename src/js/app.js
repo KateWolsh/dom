@@ -1,5 +1,7 @@
 // TODO: write code here
+
 window.addEventListener("DOMContentLoaded", function () {
+  // Класс, отвечающий за логику игры
   class GameLogic {
     constructor(game) {
       this.game = game;
@@ -13,25 +15,30 @@ window.addEventListener("DOMContentLoaded", function () {
       this.initGameBoardClickHandler();
       this.initMonsterHover();
       this.updateScoreDisplay();
+      this.startMonsterInterval();
     }
 
+    // Получение случайной ячейки из игрового поля
     getRandomCell() {
       const cells = this.game.gameBoard.getElementsByClassName("cell");
       const randomCell = cells[Math.floor(Math.random() * cells.length)];
       return randomCell;
     }
 
+    // Установка гоблина в случайную позицию на игровом поле
     setMonsterRandomPosition() {
       const randomCell = this.getRandomCell();
       randomCell.appendChild(this.game.monster);
     }
 
+    // Обработка клика по гоблину
     handleMonsterClick() {
       this.score += 1;
       this.updateScoreDisplay();
       this.resetMissedAttempts();
     }
 
+    // Обработка клика по игровому полю
     handleGameBoardClick() {
       this.missedAttempts += 1;
 
@@ -40,10 +47,12 @@ window.addEventListener("DOMContentLoaded", function () {
       }
     }
 
+    // Сброс счетчика промахов
     resetMissedAttempts() {
       this.missedAttempts = 0;
     }
 
+    // Инициализация обработчика клика для каждой ячейки игрового поля
     initGameBoardClickHandler() {
       const cells = this.game.gameBoard.getElementsByClassName("cell");
 
@@ -52,6 +61,7 @@ window.addEventListener("DOMContentLoaded", function () {
       }
     }
 
+    // Инициализация обработчика наведения для гоблина
     initMonsterHover() {
       this.game.monster.addEventListener("mouseover", () => {
         this.game.monster.style.cursor = "pointer"; // Используем встроенный курсор pointer
@@ -62,16 +72,31 @@ window.addEventListener("DOMContentLoaded", function () {
       });
     }
 
+    // Запуск интервала для перемещения гоблина
+    startMonsterInterval() {
+      // Используем setTimeout с рекурсивным вызовом
+      const moveMonster = () => {
+        this.setMonsterRandomPosition();
+        setTimeout(moveMonster, 1000);
+      };
+
+      // Запускаем первый вызов интервала
+      moveMonster();
+    }
+
+    // Обновление отображения счета
     updateScoreDisplay() {
       this.scoreDisplay.textContent = "Score: " + this.score;
     }
 
+    // Завершение игры
     endGame() {
       alert("Game Over! Your final score is: " + this.score);
       location.reload();
     }
   }
 
+  // Класс, представляющий саму игру
   class Game {
     constructor() {
       this.gameBoard = document.getElementsByClassName("game-board")[0];
@@ -81,14 +106,16 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Создание экземпляра игры
   const gameInstance = new Game();
 });
 
 // const unusedVariable = "variable";
 
-// for demonstration purpose only
+// Экспорт для демонстрационных целей
 export default function demo(value) {
   return `Demo: ${value}`;
 }
 
+// Вывод в консоль для проверки подключения файла
 console.log("app.js included");
